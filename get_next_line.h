@@ -6,7 +6,7 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:27:59 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/05 18:43:56 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/03/07 14:16:21 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@
 # endif
 
 char *get_next_line(int fd);
-char *extract_line(char* buffer);
-char	*ft_strchr(char *s, int c);
-size_t	ft_strlen(const char *s);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-char	*ft_strdup(const char *s);
-static char	*ft_strncpy(char *dest, const char *src, size_t dsize);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char *gnl_extract_line(char* buffer);
+char	*gnl_ft_strchr(char *s, int c);
+size_t	gnl_ft_strlen(const char *s);
+void	*gnl_ft_memcpy(void *dest, const void *src, size_t n);
+char	*gnl_ft_strdup(const char *s);
+static char	*gnl_ft_strncpy(char *dest, const char *src, size_t dsize);
+char	*gnl_ft_substr(char const *s, unsigned int start, size_t len);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:58:40 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/04 19:56:00 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:09:26 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "get_next_line.h"
 
-char	*ft_strchr(char *s, int c) // locate char c in string
+char	*gnl_ft_strchr(char *s, int c) // locate char c in string
 {
 	while (*s)
 	{
@@ -27,7 +27,7 @@ char	*ft_strchr(char *s, int c) // locate char c in string
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *s) //calculate the length of a string
+size_t	gnl_ft_strlen(const char *s) //calculate the length of a string
 {
 	int	i;
 
@@ -37,7 +37,7 @@ size_t	ft_strlen(const char *s) //calculate the length of a string
 	return (i);
 }
 
-void	*ft_memcpy(void *dest, const void *src, size_t n) //copy memory area
+void	*gnl_ft_memcpy(void *dest, const void *src, size_t n) //copy memory area
 {
 	const unsigned char		*box;
 	unsigned char			*box2;
@@ -56,20 +56,20 @@ void	*ft_memcpy(void *dest, const void *src, size_t n) //copy memory area
 	return (dest);
 }
 
-char	*ft_strdup(const char *s) //duplicate of str
+char	*gnl_ft_strdup(const char *s) //duplicate of str
 {
 	size_t	len;
 	char	*dup;
 
-	len = ft_strlen(s) + 1;
+	len = gnl_ft_strlen(s) + 1;
 	dup = (char *)malloc(len);
 	if (dup == (NULL))
 		return (NULL);
-	ft_memcpy(dup, s, len);
+	gnl_ft_memcpy(dup, s, len);
 	return (dup);
 }
 
-static char	*ft_strncpy(char *dest, const char *src, size_t dsize)
+static char	*gnl_ft_strncpy(char *dest, const char *src, size_t dsize)
 {
 	size_t	i;
 
@@ -87,7 +87,7 @@ static char	*ft_strncpy(char *dest, const char *src, size_t dsize)
 	return (dest);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*gnl_ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*subs;
 	size_t	slen;
@@ -95,9 +95,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (s == NULL)
 		return (NULL);
-	slen = ft_strlen(s);
+	slen = gnl_ft_strlen(s);
 	if (start >= slen)
-		return (ft_strdup(""));
+		return (gnl_ft_strdup(""));
 	if (len > slen - start)
 		sublen = slen - start;
 	else
@@ -105,24 +105,24 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	subs = (char *)malloc(sublen + 1);
 	if (subs == NULL)
 		return (NULL);
-	ft_strncpy(subs, &s[start], sublen);
+	gnl_ft_strncpy(subs, &s[start], sublen);
 	subs[sublen] = '\0';
 	return (subs);
 }
-/*char	*ft_strjoin(char const *s1, char const *s2)
+char	*gnl_ft_strjoin(char const *s1, char const *s2)
 {
 	char	*s3;
 	size_t	len1;
 	size_t	len2;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
+	if (s1 == NULL)
+		s1 = "";
+	len1 = gnl_ft_strlen(s1);
+	len2 = gnl_ft_strlen(s2);
 	s3 = (char *)malloc (len1 + len2 + 1);
 	if (!s3)
 		return (NULL);
-	ft_strlcpy(s3, s1, len1 + len2 + 1);
-	ft_strlcat(s3, s2, len1 + len2 + 1);
+	gnl_ft_strlcpy(s3, s1, len1 + len2 + 1);
+	gnl_ft_strlcat(s3, s2, len1 + len2 + 1);
 	return (s3);
-}*/
+}
