@@ -6,7 +6,7 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:15:55 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/07 15:09:14 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/03/07 17:37:38 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 char *ft_readbuffer(int fd, char *r)
 {
-	char buffer[BUFFER_SIZE];
+	char buffer[BUFFER_SIZE + 1];
 	int readbytes;
 	
-	while(!gnl_ft_strchr(buffer, '/n'))
+	while(!gnl_ft_strchr(r, '\n'))
 	{
 		readbytes = read(fd, buffer, BUFFER_SIZE);
-		if(readbytes == -1)
-			perror("error al leer archivo");
+		if(readbytes <= 0)
+			return (NULL);
 		buffer[readbytes] = '\0';
 		r = gnl_ft_strjoin(r, buffer);
 	}
 	return(r);
 }
 
-char *extract_line(char *buffer)
+char *ft_extract_line(char *buffer)
 {
 	int txt1;
 	int txt2;
@@ -36,9 +36,9 @@ char *extract_line(char *buffer)
 	char *line;
 
 	txt1 = gnl_ft_strlen(buffer);
-	txt2 = gnl_ft_strlen(ft_strchr(buffer, '\n'));
+	txt2 = gnl_ft_strlen(gnl_ft_strchr(buffer, '\n'));
 	lenline = txt1 - txt2;
-	line = gnl_ft_substr(buffer, 0, lenline);
+	line = gnl_ft_substr(buffer, 0, lenline +1);
 	return(line);
 }
 
@@ -49,14 +49,12 @@ char *get_next_line(int fd)
 	static char *rest;
 
 	buffer = ft_readbuffer(fd, rest);
-	while(!buffer)
-	{
-		line = extract_line(buffer);
-		rest = gnl_ft_strchr(line, '\n') + 1;
-		free(buffer);
-		buffer = rest;
-	}
-	return (buffer);
+	line = ft_extract_line(buffer);
+	// printf("Line %s\n", line);
+	rest = gnl_ft_strchr(buffer, '\n') + 1;
+	// free(buffer);
+	// buffer = rest;
+	return (line);
 }
 
 int main(int argc, char **argv)
@@ -77,7 +75,16 @@ int main(int argc, char **argv)
         return (1);
     }
     result = get_next_line(fd);
-    printf("%s", result);
+	printf("%s", result);
+	    result = get_next_line(fd);
+	printf("%s", result);
+
+	// while(result)
+	// {
+	// 	printf("%s", result);
+	// 	free (result);
+	// 	result = get_next_line(fd);
+	// }
     close (fd);
     return (0);
 }
