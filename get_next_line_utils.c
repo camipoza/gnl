@@ -6,7 +6,7 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:58:40 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/07 17:26:49 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:58:30 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ size_t	gnl_ft_strlen(const char *s) //calculate the length of a string
 	int	i;
 
 	i = 0;
+	if (!s)
+		return(0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
