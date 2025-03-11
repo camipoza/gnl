@@ -6,7 +6,7 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:58:40 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/09 18:58:30 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/03/11 19:23:41 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "get_next_line.h"
 
-char	*gnl_ft_strchr(char *s, int c) // locate char c in string
+char	*gnl_ft_strchr(char *s, int c)
 {
 	if (!s)
 		return (NULL);
@@ -24,43 +24,24 @@ char	*gnl_ft_strchr(char *s, int c) // locate char c in string
 			return (s);
 		s++;
 	}
-	if ((char)c == '\0') // manejo del nulo
+	if ((char)c == '\0')
 		return (s);
 	return (NULL);
 }
 
-size_t	gnl_ft_strlen(const char *s) //calculate the length of a string
+size_t	gnl_ft_strlen(const char *s)
 {
 	int	i;
 
 	i = 0;
 	if (!s)
-		return(0);
+		return (0);
 	while (s[i] != '\0')
 		i++;
 	return (i);
 }
 
-void	*gnl_ft_memcpy(void *dest, const void *src, size_t n) //copy memory area
-{
-	const unsigned char		*box;
-	unsigned char			*box2;
-	size_t					i;
-
-	i = 0;
-	box = (const unsigned char *)src;
-	box2 = (unsigned char *) dest;
-	if (box2 == NULL && box == NULL)
-		return (NULL);
-	while (i < n)
-	{
-		box2[i] = box[i];
-		i++;
-	}
-	return (dest);
-}
-
-char	*gnl_ft_strdup(const char *s) //duplicate of str
+char	*gnl_ft_strdup(const char *s)
 {
 	size_t	len;
 	char	*dup;
@@ -69,11 +50,11 @@ char	*gnl_ft_strdup(const char *s) //duplicate of str
 	dup = (char *)malloc(len);
 	if (dup == (NULL))
 		return (NULL);
-	gnl_ft_memcpy(dup, s, len);
+	gnl_ft_strncpy(dup, s, len);
 	return (dup);
 }
 
-static char	*gnl_ft_strncpy(char *dest, const char *src, size_t dsize)
+char	*gnl_ft_strncpy(char *dest, const char *src, size_t dsize)
 {
 	size_t	i;
 
@@ -114,24 +95,7 @@ char	*gnl_ft_substr(char const *s, unsigned int start, size_t len)
 	return (subs);
 }
 
-size_t	gnl_ft_strlcpy(char *dest, const char *src, size_t size)
-{
-	size_t	slen;
-
-	slen = 0;
-	if (size > 0)
-	{
-		while (src[slen] != '\0' && slen < (size - 1))
-		{
-			dest[slen] = src[slen];
-			slen++;
-		}
-		dest[slen] = '\0';
-	}
-	return (gnl_ft_strlen(src));
-}
-
-size_t	gnl_ft_strlcat(char *dest, const char *src, size_t size) //concat str
+size_t	gnl_ft_strlcat(char *dest, const char *src, size_t size)
 {
 	size_t	len_dest;
 	size_t	len_src;
@@ -168,7 +132,7 @@ char	*gnl_ft_strjoin(char const *s1, char const *s2)
 	s3 = (char *)malloc (len1 + len2 + 1);
 	if (!s3)
 		return (NULL);
-	gnl_ft_strlcpy(s3, s1, len1 + len2 + 1);
+	gnl_ft_strncpy(s3, s1, len1 + len2 + 1);
 	gnl_ft_strlcat(s3, s2, len1 + len2 + 1);
 	return (s3);
 }
