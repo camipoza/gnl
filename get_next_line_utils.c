@@ -6,40 +6,13 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:58:40 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/11 19:23:41 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/03/14 19:27:35 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "get_next_line.h"
-
-char	*gnl_ft_strchr(char *s, int c)
-{
-	if (!s)
-		return (NULL);
-	while (*s)
-	{
-		if (*s == (char)c)
-			return (s);
-		s++;
-	}
-	if ((char)c == '\0')
-		return (s);
-	return (NULL);
-}
-
-size_t	gnl_ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
 
 char	*gnl_ft_strdup(const char *s)
 {
@@ -89,7 +62,7 @@ char	*gnl_ft_substr(char const *s, unsigned int start, size_t len)
 		sublen = len;
 	subs = (char *)malloc(sublen + 1);
 	if (subs == NULL)
-		return (NULL);
+		return (NULL); 
 	gnl_ft_strncpy(subs, &s[start], sublen);
 	subs[sublen] = '\0';
 	return (subs);
@@ -119,14 +92,19 @@ size_t	gnl_ft_strlcat(char *dest, const char *src, size_t size)
 	return (len_dest + len_src);
 }
 
-char	*gnl_ft_strjoin(char const *s1, char const *s2)
+char	*gnl_ft_strjoin(char *s1, char *s2)
 {
 	char	*s3;
 	size_t	len1;
 	size_t	len2;
 
 	if (s1 == NULL)
-		s1 = "";
+	{
+		s1 = malloc(sizeof(char) + 1);
+		if (!s1 || !s2)
+			return (NULL);
+		s1[0] = '\0';
+	}
 	len1 = gnl_ft_strlen(s1);
 	len2 = gnl_ft_strlen(s2);
 	s3 = (char *)malloc (len1 + len2 + 1);
@@ -134,5 +112,6 @@ char	*gnl_ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	gnl_ft_strncpy(s3, s1, len1 + len2 + 1);
 	gnl_ft_strlcat(s3, s2, len1 + len2 + 1);
+	free(s1);
 	return (s3);
 }
