@@ -6,7 +6,7 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:58:40 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/14 19:27:35 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:09:47 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,14 @@ char	*gnl_ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	slen = gnl_ft_strlen(s);
 	if (start >= slen)
-		return (gnl_ft_strdup(""));
+		return (NULL);
 	if (len > slen - start)
 		sublen = slen - start;
 	else
 		sublen = len;
 	subs = (char *)malloc(sublen + 1);
 	if (subs == NULL)
-		return (NULL); 
+		return (NULL);
 	gnl_ft_strncpy(subs, &s[start], sublen);
 	subs[sublen] = '\0';
 	return (subs);
@@ -94,24 +94,28 @@ size_t	gnl_ft_strlcat(char *dest, const char *src, size_t size)
 
 char	*gnl_ft_strjoin(char *s1, char *s2)
 {
-	char	*s3;
-	size_t	len1;
-	size_t	len2;
+	char	*str;
+	int		i;
+	int		j;
 
-	if (s1 == NULL)
+	i = -1;
+	j = -1;
+	if (!s1 || !s2)
 	{
 		s1 = malloc(sizeof(char) + 1);
 		if (!s1 || !s2)
 			return (NULL);
 		s1[0] = '\0';
 	}
-	len1 = gnl_ft_strlen(s1);
-	len2 = gnl_ft_strlen(s2);
-	s3 = (char *)malloc (len1 + len2 + 1);
-	if (!s3)
-		return (NULL);
-	gnl_ft_strncpy(s3, s1, len1 + len2 + 1);
-	gnl_ft_strlcat(s3, s2, len1 + len2 + 1);
+	str = malloc(sizeof(char) * (gnl_ft_strlen(s1) + gnl_ft_strlen(s2) + 1));
+	if (str)
+	{
+		while (s1[++i] != '\0')
+			str[i] = s1[i];
+		while (s2[++j] != '\0')
+			str[i + j] = s2[j];
+		str[i + j] = '\0';
+	}
 	free(s1);
-	return (s3);
+	return (str);
 }
