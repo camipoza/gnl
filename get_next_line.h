@@ -6,7 +6,7 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 18:27:59 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/18 17:30:41 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/03/20 18:57:12 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*gnl_extract_line(char *buffer);
+char	*ft_extract_line(char *buffer);
 char	*ft_readbuffer(int fd, char *rest);
 char	*gnl_ft_strchr(char *s, char c);
 size_t	gnl_ft_strlen(const char *s);
