@@ -6,13 +6,13 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:15:55 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/27 17:33:05 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/03/30 18:01:47 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char *gnl_ft_strchr(char *s, char c)
+char	*gnl_ft_strchr(char *s, char c)
 {
 	if (!s)
 		return (NULL);
@@ -27,22 +27,22 @@ char *gnl_ft_strchr(char *s, char c)
 	return (NULL);
 }
 
-int ft_untiln(const char *s)
+int	ft_untiln(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s)
 		return (-1);
-	while(s[i] != '\n' && s[i] != '\0')
+	while (s[i] != '\n' && s[i] != '\0')
 		i++;
-	return(i);
+	return (i);
 }
 
-char *ft_readbuffer(int fd, char *rest)
+char	*ft_readbuffer(int fd, char *rest)
 {
-	char *buffer;
-	int readbytes;
+	char	*buffer;
+	int		readbytes;
 
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	while (!gnl_ft_strchr(rest, '\n'))
@@ -54,7 +54,7 @@ char *ft_readbuffer(int fd, char *rest)
 			return (NULL);
 		}
 		if (readbytes == 0)
-			break;
+			break ;
 		buffer[readbytes] = '\0';
 		rest = gnl_ft_strjoin(rest, buffer);
 	}
@@ -62,12 +62,12 @@ char *ft_readbuffer(int fd, char *rest)
 	return (rest);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	char *buffer;
-	char *line;
-	static char *rest = NULL;
-	int	linelen;
+	char		*buffer;
+	char		*line;
+	static char	*rest = NULL;
+	int			linelen;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
