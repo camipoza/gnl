@@ -6,7 +6,7 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:49:16 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/30 18:40:51 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/03/30 19:05:18 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,12 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 		return (NULL);
 	buffer = ft_readbuffer(fd, rest[fd]);
-	if (!buffer)
-		return (NULL);
+	// if (!buffer)
+	// 	return (NULL);
 	linelen = ft_untiln(buffer);
 	line = gnl_ft_substr(buffer, 0, linelen + 1);
+	if(!line)
+		return(NULL);
 	if (gnl_ft_strchr(buffer, '\n'))
 		rest[fd] = gnl_ft_substr(buffer, linelen + 1, BUFFER_SIZE);
 	else
