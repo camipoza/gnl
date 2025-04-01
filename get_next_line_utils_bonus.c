@@ -6,13 +6,13 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 18:03:09 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/30 18:10:30 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:55:39 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*gnl_ft_strncpy(char *dest, const char *src, size_t dsize)
 {
