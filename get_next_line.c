@@ -6,7 +6,7 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 17:15:55 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/30 18:01:47 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:58:34 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,31 +82,31 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int main(int argc, char **argv)
-// {
-// 	int fd;
-// 	char *result;
+int main(int argc, char **argv)
+{
+	int fd;
+	char *result;
 
-// 	if (argc != 2)
-// 	{
-// 		printf("argumentos insuficientes");
-// 		return (1);
-// 	}
+	if (argc != 2)
+	{
+		printf("argumentos insuficientes");
+		return (1);
+	}
 
-// 	fd = open(argv[1], O_RDONLY);
-// 	if (fd == -1)
-// 	{
-// 		perror("error al abrir archivo");
-// 		return (1);
-// 	}
-// 	result = get_next_line(fd);
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+	{
+		perror("error al abrir archivo");
+		return (1);
+	}
+	result = get_next_line(fd);
 
-// 	while (result)
-// 	{
-// 		printf("%s", result);
-// 		free(result);
-// 		result = get_next_line(fd);
-// 	}
-// 	close(fd);
-// 	return (0);
-// } 
+	while (result)
+	{
+		printf("%s", result);
+		free(result);
+		result = get_next_line(fd);
+	}
+	close(fd);
+	return (0);
+} 

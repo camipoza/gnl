@@ -6,12 +6,11 @@
 /*   By: cpoza-ra <cpoza-ra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:49:16 by cpoza-ra          #+#    #+#             */
-/*   Updated: 2025/03/31 16:01:36 by cpoza-ra         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:57:37 by cpoza-ra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <unistd.h>
 
 char	*gnl_ft_strchr(char *s, char c)
 {
@@ -112,15 +111,17 @@ char	*get_next_line(int fd)
 		perror("error al abrir archivo");
 		return (1);
 	}
+    result = get_next_line(fd);
+    result2 = get_next_line(fd2);
 
 	while (result || result2)
 	{
-        result = get_next_line(fd);
-        result2 = get_next_line(fd2);
 		printf("%s", result);
 		free(result);
+		result = get_next_line(fd);
 		printf("%s", result2);
 		free(result2);
+    	result2 = get_next_line(fd2);
 	}
 	close(fd);
 	close(fd2);
